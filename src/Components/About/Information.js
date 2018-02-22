@@ -8,8 +8,9 @@ const Information = (props) => {
         <div>
             <Grid>
                 <Grid.Row>
-                    <Grid.Column width={16}>
-                        <List>
+                    <Grid.Column width={1} />
+                    <Grid.Column width={14}>
+                        <List size='big'>
                             <Header as='h3' dividing>{props.title}</Header>
                             {props.info.map((information, id) => <List.Item key={id}>{information}</List.Item>)}
                         </List>

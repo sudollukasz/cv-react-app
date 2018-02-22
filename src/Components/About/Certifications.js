@@ -9,9 +9,10 @@ const Certifications = (props) => {
             <Grid>
                 <Divider hidden />
                 <Grid.Row>
-                    <Grid.Column width={16}>
-                        <List>
-                            <Header as='h3' dividing>Certificates</Header>
+                    <Grid.Column width={1} />
+                    <Grid.Column width={14}>
+                        <List size='big'>
+                            <Header as='h2' dividing>Certificates</Header>
                             {props.cert.map((certificate, id) => <List.Item key={id}>{certificate}</List.Item>)}
                         </List>
                     </Grid.Column>

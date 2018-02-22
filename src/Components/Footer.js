@@ -15,7 +15,7 @@ const Footer = () => {
         <div>
             <Divider hidden />
                 <Segment color='blue'>
-                <Header as='h4'>Technologies used to build site:</Header>
+                <Header as='h3'>Technologies used to build site:</Header>
                     <Segment basic>
                         <Grid>
                             <Grid.Row columns={7}> 

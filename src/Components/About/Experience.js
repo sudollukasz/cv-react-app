@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Header, Divider } from 'semantic-ui-react'
+import { Grid, Header, Divider, List } from 'semantic-ui-react'
 
 const Experience = (props) => {
     if (props.exp.length === 0) { return null }
@@ -20,11 +20,11 @@ const Experience = (props) => {
                 <Divider hidden />
                 <Grid>
                     <Grid.Row>
-                        <Grid.Column width={4}>
+                        <Grid.Column width={3}>
                             {info.begin} - {info.end}
                         </Grid.Column>
-                        <Grid.Column width={12}>
-                            <Header size='small'>{info.name}</Header>
+                        <Grid.Column width={13}>
+                            <Header size='medium'>{info.name}</Header>
                             {info.info.split(';').map((duty, id) => <p key={id}>{duty}</p> ) }
                         </Grid.Column>
                     </Grid.Row>
@@ -35,8 +35,13 @@ const Experience = (props) => {
         return (
             <div>
                 <Divider hidden />
-                <Header as='h3' dividing>{props.title}</Header>
-                {names}
+                <Grid>
+                    <Grid.Column width={1} />
+                    <Grid.Column width={14}>
+                    <Header as='h2' dividing>{props.title}</Header>
+                    <List size='big'>{names}</List>
+                    </Grid.Column>
+                </Grid>
             </div>
         )
     }

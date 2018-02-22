@@ -8,9 +8,10 @@ const Personal = (props) => {
                 <Grid>
                     <Divider hidden />
                     <Grid.Row>
-                        <Grid.Column width={12}>
-                        <List>
-                            <Header as='h3' dividing>Personal Info</Header>
+                        <Grid.Column width={1} />
+                        <Grid.Column width={10}>
+                        <List size='big'>
+                            <Header as='h2' dividing>Personal Info</Header>
                             <List.Item><b>Name:</b> {props.personal[0]}</List.Item>
                                 <List.Item><b>Birth:</b> {props.personal[1]}</List.Item>
                                 <List.Item><b>City:</b> {props.personal[2]}</List.Item>
