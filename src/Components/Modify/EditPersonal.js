@@ -10,6 +10,15 @@ import {
   Confirm
 } from "semantic-ui-react";
 
+const INPUTS = [
+  {placeholder: "Name", id: "name"},
+  {placeholder: "Birth", id: "birth"},
+  {placeholder: "City", id: "city"},
+  {placeholder: "Phone", id: "phone"},
+  {placeholder: "Email", id: "email"},
+  {placeholder: "Photo link", id: "photo"},
+]
+
 class EditPersonal extends Component {
   constructor(props) {
     super(props);
@@ -55,91 +64,31 @@ class EditPersonal extends Component {
   ConfirmCancel = () =>
     this.setState({ confirmPersonalOpen: false, modalPersonalOpen: false });
   ConfirmConfirm = () => this.setState({ confirmPersonalOpen: false });
+  
+  renderInputs() {
+    return (
+      INPUTS.map(input => {
+        return (
+          <Form.Field required key={input.id}>
+            <Label color="grey" size="large">
+              {input.placeholder}
+            </Label>
+            <Input placeholder={input.placeholder} name="personal" id={input.id} onChange={this.handleChange} />
+          </Form.Field>
+        )
+      })
+    )
+  }
 
   render() {
-    return (
-      <div>
-        <Modal
-          trigger={
-            <Button fluid basic color="teal" onClick={this.handleOpen}>
+    return <div>
+        <Modal trigger={<Button fluid basic color="teal" onClick={this.handleOpen}>
               Edit Personal Info
-            </Button>
-          }
-          basic
-          size="small"
-          dimmer="blurring"
-          open={this.state.modalPersonalOpen}
-          onClose={this.handleClose}
-        >
+            </Button>} basic size="small" dimmer="blurring" open={this.state.modalPersonalOpen} onClose={this.handleClose}>
           <Header content="Edit Personal Info" />
           <Modal.Content>
             <Form>
-              <Form.Field required>
-                <Label color="grey" size="large">
-                  Name
-                </Label>
-                <Input
-                  placeholder="Name"
-                  name="personal"
-                  id="name"
-                  onChange={this.handleChange}
-                />
-              </Form.Field>
-              <Form.Field required>
-                <Label color="grey" size="large">
-                  Birth
-                </Label>
-                <Input
-                  placeholder="Birth"
-                  name="personal"
-                  id="birth"
-                  onChange={this.handleChange}
-                />
-              </Form.Field>
-              <Form.Field required>
-                <Label color="grey" size="large">
-                  City
-                </Label>
-                <Input
-                  placeholder="City"
-                  name="personal"
-                  id="city"
-                  onChange={this.handleChange}
-                />
-              </Form.Field>
-              <Form.Field required>
-                <Label color="grey" size="large">
-                  Phone
-                </Label>
-                <Input
-                  placeholder="Phone"
-                  name="personal"
-                  id="phone"
-                  onChange={this.handleChange}
-                />
-              </Form.Field>
-              <Form.Field required>
-                <Label color="grey" size="large">
-                  Email
-                </Label>
-                <Input
-                  placeholder="Email"
-                  name="personal"
-                  id="email"
-                  onChange={this.handleChange}
-                />
-              </Form.Field>
-              <Form.Field required>
-                <Label color="grey" size="large">
-                  Photo link
-                </Label>
-                <Input
-                  placeholder="Photo link"
-                  name="personal"
-                  id="photo"
-                  onChange={this.handleChange}
-                />
-              </Form.Field>
+              {this.renderInputs()}
             </Form>
           </Modal.Content>
 
@@ -147,25 +96,14 @@ class EditPersonal extends Component {
             <Button basic color="red" onClick={this.handleCancel} inverted>
               <Icon name="remove" /> Cancel
             </Button>
-            <Button
-              color="green"
-              name="personal"
-              onClick={this.handleSubmit}
-              inverted
-            >
+            <Button color="green" name="personal" onClick={this.handleSubmit} inverted>
               <Icon name="checkmark" /> Apply
             </Button>
           </Modal.Actions>
         </Modal>
 
-        <Confirm
-          open={this.state.confirmPersonalOpen}
-          content="You must fill in all of the fields."
-          onCancel={this.ConfirmCancel}
-          onConfirm={this.ConfirmConfirm}
-        />
-      </div>
-    );
+        <Confirm open={this.state.confirmPersonalOpen} content="You must fill in all of the fields." onCancel={this.ConfirmCancel} onConfirm={this.ConfirmConfirm} />
+      </div>;
   }
 }
 

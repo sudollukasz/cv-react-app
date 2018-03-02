@@ -10,6 +10,13 @@ import {
   Confirm
 } from "semantic-ui-react";
 
+const INPUTS = [
+  { placeholder: 'Name', id: 'name' },
+  { placeholder: 'Begin date', id: 'begin' },
+  { placeholder: 'End date', id: 'end' },
+  { placeholder: 'Info', id: 'info' }
+];
+
 class AddSchool extends Component {
   constructor(props) {
     super(props);
@@ -40,20 +47,32 @@ class AddSchool extends Component {
   };
 
   validateSchool = () => {
-    if (
-      this.state.name &&
-      this.state.begin &&
-      this.state.end &&
-      this.state.info
-    ) {
+    if (this.state.name && this.state.begin && this.state.end && this.state.info) {
       return true;
     }
     return false;
   };
 
-  ConfirmCancel = () =>
-    this.setState({ confirmSchoolOpen: false, modalSchoolOpen: false });
+  ConfirmCancel = () => this.setState({ confirmSchoolOpen: false, modalSchoolOpen: false });
   ConfirmConfirm = () => this.setState({ confirmSchoolOpen: false });
+
+  renderInputs() {
+    return INPUTS.map(input => {
+      return (
+        <Form.Field required key={input.id}>
+          <Label color="grey" size="large">
+            {input.placeholder}
+          </Label>
+          <Input
+            placeholder={input.placeholder}
+            name="education"
+            id={input.id}
+            onChange={this.handleChange}
+          />
+        </Form.Field>
+      );
+    });
+  }
 
   render() {
     return (
@@ -73,50 +92,7 @@ class AddSchool extends Component {
           <Header content="Add School Info" />
           <Modal.Content>
             <Form>
-              <Form.Field required>
-                <Label color="grey" size="large">
-                  Name
-                </Label>
-                <Input
-                  placeholder="Name"
-                  name="education"
-                  id="name"
-                  onChange={this.handleChange}
-                />
-              </Form.Field>
-              <Form.Field required>
-                <Label color="grey" size="large">
-                  Begin Date
-                </Label>
-                <Input
-                  placeholder="Begin Date"
-                  name="education"
-                  id="begin"
-                  onChange={this.handleChange}
-                />
-              </Form.Field>
-              <Form.Field required>
-                <Label color="grey" size="large">
-                  End Date
-                </Label>
-                <Input
-                  placeholder="End Date"
-                  name="education"
-                  id="end"
-                  onChange={this.handleChange}
-                />
-              </Form.Field>
-              <Form.Field required>
-                <Label color="grey" size="large">
-                  Info
-                </Label>
-                <Input
-                  placeholder="Info"
-                  name="education"
-                  id="info"
-                  onChange={this.handleChange}
-                />
-              </Form.Field>
+             {this.renderInputs()}
             </Form>
           </Modal.Content>
 
@@ -124,12 +100,7 @@ class AddSchool extends Component {
             <Button basic color="red" onClick={this.handleCancel} inverted>
               <Icon name="remove" /> Cancel
             </Button>
-            <Button
-              color="green"
-              name="education"
-              onClick={this.handleSubmit}
-              inverted
-            >
+            <Button color="green" name="education" onClick={this.handleSubmit} inverted>
               <Icon name="checkmark" /> Apply
             </Button>
           </Modal.Actions>
